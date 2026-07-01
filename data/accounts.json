@@ -1,0 +1,21 @@
+[
+  {
+    "id": "acc_hoang_main",
+    "name": "htnd25042004nd1@gmail.com",
+    "partition": "persist:hoang-main",
+    "note": "Tài khoản chính"
+  },
+  {
+    "id": "acc_hoang_test",
+    "name": "htnd25041@gmail.com",
+    "partition": "persist:hoang-test",
+    "note": "Tài khoản test"
+  },
+  {
+    "id": "acc_hoang_study",
+    "name": "htnd2544@gmail.com",
+    "partition": "persist:hoang-study",
+    "note": "Tài khoản học tập"
+  }
+
+]

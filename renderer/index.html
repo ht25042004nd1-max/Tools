@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>AI Session Browser</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Header chua toan bo dieu khien: chon tai khoan, chon model, URL, cac nut -->
+  <header id="app-header">
+    <div class="header-row title-row">
+      <span class="app-title">Quản Lý Tài Khoản</span>
+      <span id="status-text" class="status">Sẵn sàng</span>
+    </div>
+
+    <div class="header-row control-row">
+      <button id="btn-back" class="btn">←</button>
+
+      <button id="btn-reload" class="btn">⟳</button>
+      
+      <button id="btn-forward" class="btn">→</button>
+
+
+      <div class="select-group">
+        <select id="account-select" class="control">
+          <option value="">-- Chọn tài khoản --</option>
+        </select>
+        <button id="btn-manage-accounts" class="btn btn-icon" title="Quản lý tài khoản">⚙</button>
+      </div>
+
+      <div class="select-group">
+        <select id="model-select" class="control">
+          <option value="">-- Chọn model AI --</option>
+        </select>
+        <button id="btn-manage-models" class="btn btn-icon" title="Quản lý model">⚙</button>
+      </div>
+
+      <input id="url-input" class="control url-box" type="text" readonly placeholder="URL sẽ hiển thị ở đây..." />
+
+      <button id="btn-run" class="btn btn-primary">▶ Start</button>
+
+    </div>
+  </header>
+
+  <!-- ===== Modal quan ly Tai khoan ===== -->
+  <div id="account-modal" class="modal-overlay hidden">
+    <div class="modal-box">
+      <div class="modal-header">
+        <span>Quản lý tài khoản</span>
+        <button class="btn-close" data-close="account-modal">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <ul id="account-list" class="item-list"></ul>
+
+        <div class="form-block">
+          <h4 id="account-form-title">Thêm tài khoản mới</h4>
+          <input type="hidden" id="account-form-id" />
+          <input type="text" id="account-form-name" class="control full-width" placeholder="Tên tài khoản (vd: Hoàng Work)" />
+          <input type="text" id="account-form-note" class="control full-width" placeholder="Ghi chú (tuỳ chọn)" />
+          <div class="form-actions">
+            <button id="btn-account-save" class="btn btn-primary">Lưu</button>
+            <button id="btn-account-cancel-edit" class="btn hidden">Huỷ sửa</button>
+          </div>
+          <p class="hint-text">* Mỗi tài khoản sẽ tự được cấp một session riêng (partition), không thể sửa sau khi tạo để tránh mất phiên đăng nhập.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Modal quan ly Model ===== -->
+  <div id="model-modal" class="modal-overlay hidden">
+    <div class="modal-box">
+      <div class="modal-header">
+        <span>Quản lý model AI</span>
+        <button class="btn-close" data-close="model-modal">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <ul id="model-list" class="item-list"></ul>
+
+        <div class="form-block">
+          <h4 id="model-form-title">Thêm model mới</h4>
+          <input type="hidden" id="model-form-id" />
+          <input type="text" id="model-form-name" class="control full-width" placeholder="Tên model (vd: Perplexity)" />
+          <input type="text" id="model-form-url" class="control full-width" placeholder="URL (vd: https://www.perplexity.ai)" />
+          <div class="form-actions">
+            <button id="btn-model-save" class="btn btn-primary">Lưu</button>
+            <button id="btn-model-cancel-edit" class="btn hidden">Huỷ sửa</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Vung nay de trong, vi trang AI thuc su duoc render boi BrowserView
+       trong main process, nam chong len phia duoi phan header -->
+  <main id="web-area"></main>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
