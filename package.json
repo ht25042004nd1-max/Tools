@@ -1,0 +1,40 @@
+{
+  "name": "ai-session-browser",
+  "version": "1.0.0",
+  "description": "Trinh duyet mini desktop cho cac web AI, ho tro nhieu tai khoan voi session rieng biet",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "cross-env CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --win"
+  },
+  "author": "Hoang",
+  "license": "MIT",
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "electron": "^30.5.1",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.hoang.aisessionbrowser",
+    "productName": "AI Session Browser",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "renderer/**/*",
+      "data/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": "nsis",
+      "signAndEditExecutable": false,
+      "icon": "Build/app_icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  }
+}
